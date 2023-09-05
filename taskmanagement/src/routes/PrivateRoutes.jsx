@@ -6,6 +6,7 @@ import AuthenticationLayoutPage from '../component/AuthenticationLayoutPage';
 const PrivateRoutes = ({children}) => {
     let { isauth } = useContext(Appcontext);
     // let isLogin = true;
+    console.log(isauth, "auth");
     let Navigate  = useNavigate()
     if(!isauth) {
         console.log("login render");
