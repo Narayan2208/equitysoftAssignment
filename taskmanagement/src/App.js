@@ -1,17 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-import Navbar from './component/Navbar';
-import Addtask from './component/Addtask';
-import AuthenticationLayoutPage from './component/AuthenticationLayoutPage';
-import AllRoutes from './routes/AllRoutes';
 
+import './App.css';
+
+import AllRoutes from './routes/AllRoutes';
+import AppcontextProvider from './ContextProvider/AppcontextProvider';
 function App() {
   return (
    <>
-   {/* <Navbar/>
-   <Addtask/> */}
-   {/* <AuthenticationLayoutPage/> */}
+
+   <AppcontextProvider>
    <AllRoutes/>
+   </AppcontextProvider>
+    
    </>
   );
 }
