@@ -25,7 +25,7 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   try {
-    const { name, email, password } = req.body
+    const { name, email, password} = req.body
     const existingUser = await User.findOne({ email })
 
     if (existingUser) {

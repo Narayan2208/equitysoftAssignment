@@ -2,6 +2,9 @@ import {
   Box,
   Flex,
   Image,
+  Input,
+  InputGroup,
+  InputLeftElement,
   Tab,
   TabList,
   TabPanel,
@@ -16,6 +19,7 @@ import authImage3 from "../Asset/Kraken Crypto Exchange _ Buy crypto with peace 
 import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
 import { Link } from "react-router-dom";
+import { BsFillPersonFill } from "react-icons/bs";
 const AuthenticationLayoutPage = () => {
   return (
     <>
@@ -30,6 +34,7 @@ const AuthenticationLayoutPage = () => {
            
           />
         </Box>
+       
         <Box w={"50%"} position={"relative"} bg={"#F7F7F9"}>
           <Tabs variant="soft-rounded" colorScheme="green">
             <TabList

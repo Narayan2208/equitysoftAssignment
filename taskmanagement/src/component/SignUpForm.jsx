@@ -21,37 +21,16 @@ const SignUpForm = () => {
     password: "",
   };
   let toast = useToast();
+
   let [signinUser, setSignInUser] = useState(signinUsers);
-  // let [userDataArr, setDataArr] = useState([]);
-  // let handleSubmit = async (e) => {
-  //   console.log(userDataArr, "hiiiii");
-  //   setDataArr([...userDataArr, signinUser]);
-  //   setSignInUser({ name: "", email: "", number: "" });
-  //   try {
-  //     // Make a POST request to your backend
-  //     const response = await axios.post(
-  //       "http://localhost:8000/api/register",
-  //       signinUser
-  //     );
-
-  //     // Handle the response
-  //     console.log(response.data.msg);
-
-  //     // Clear the form fields
-  //     setSignInUser({ name: "", email: "", password: "" });
  
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //   }
-  // };
   let handleSubmit = async (e) => {
-   
-
+    
     try {
       // Make a POST request to your backend
-      const response = await axios.post(
-        "http://localhost:8000/api/register",
-        signinUser
+      const response = await axios.post("http://localhost:8000/api/register", 
+        signinUser,
+        
       );
 
       // Handle the response
@@ -82,6 +61,7 @@ const SignUpForm = () => {
         left={"8rem"}
         bg={"white"}
         box-shadow={"rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px"}
+       
       >
         <Text
           textAlign={"center"}
@@ -92,7 +72,8 @@ const SignUpForm = () => {
         >
           Sign Up
         </Text>
-        <Stack w={"100%"} spacing={4}>
+        <Stack w={"100%"} spacing={4} >
+      
           <InputGroup>
             <InputLeftElement pointerEvents="none">
               <BsFillPersonFill color="gray.300" />
