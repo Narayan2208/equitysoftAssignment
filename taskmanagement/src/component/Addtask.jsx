@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -11,10 +11,9 @@ import {
   useDisclosure,
   Input,
   Stack,
-  Checkbox,
   Textarea,
-  VStack,
-  HStack,
+  useToast,
+ 
 } from "@chakra-ui/react";
 import axios from "axios";
 
@@ -23,74 +22,113 @@ const Addtask = () => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    checklist: [],
     dueDate: "",
-    labels: [],
+    checklist: "",
+    labels: "",
+    creatorName: "",
   });
+  const [userToken, setUserToken] = useState("");
+  const [userName, setUserName] = useState("");
+  let toast = useToast();
+  function handleChange(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
 
-  // State to capture a new checklist item
-  const [newChecklistItem, setNewChecklistItem] = useState("");
+  useEffect(() => {
+    setUserToken(localStorage.getItem("token"));
+    setUserName(localStorage.getItem("userName"));
+   
+    
+  }, []);
 
-  // Function to add a new checklist item
-  const addChecklistItem = () => {
-    if (newChecklistItem.trim() !== "") {
-      setFormData((prevData) => ({
-        ...prevData,
-        checklist: [
-          ...prevData.checklist,
-          { text: newChecklistItem, completed: false },
-        ],
-      }));
-      setNewChecklistItem("");
-    }
-  };
+  useEffect(() => {
+    setFormData({ ...formData, creatorName: userName })
+  }, [userName])
+  // const handleSubmit = async () => {
+  //   try {
+  //     // Retrieve the user's token from localStorage
+  //     const userToken = localStorage.getItem("token");
 
-  // Function to remove a checklist item
-  const removeChecklistItem = (index) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      checklist: prevData.checklist.filter((_, i) => i !== index),
-    }));
-  };
+  //     // Check if the user is authenticated
+  //     if (!userToken) {
+  //       console.error("User not authenticated");
+  //       // You can display an error message or redirect the user to the login page.
+  //       return;
+  //     }
 
+  //     // Make a POST request to your backend with the user's token in the headers
+  //     const response = await axios.post(
+  //       "http://localhost:8000/api/tasks",
+  //       {
+  //         ...formData, // Include other form data
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${userToken}`,
+  //         },
+  //       }
+  //     );
+
+  //     // Check if the response status is OK (201)
+  //     if (response.status === 201) {
+  //       // Handle the successful response here
+  //       console.log("Task created:", response.data);
+
+  //       // Close the modal after successful submission
+  //       onClose();
+  //     } else {
+  //       // Handle other response statuses (e.g., 400, 401, etc.) here
+  //       console.error("Error creating task. Status:", response.status);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error creating task:", error);
+  //   }
+  // };
   const handleSubmit = async () => {
-    try {
-      // Retrieve the user's token from localStorage
-      const userToken = localStorage.getItem("token");
-
-      // Check if the user is authenticated
-      if (!userToken) {
-        console.error("User not authenticated");
-        // You can display an error message or redirect the user to the login page.
-        return;
+    let { description, name, checklist, labels, dueDate, creatorName } = formData;
+    console.log(formData);
+    if (
+      name !== "" &&
+      dueDate !== "" &&
+      description !== "" &&
+      checklist !== "" &&
+      labels !== "" &&
+      creatorName !== ""
+    ) {
+      let labelarr = labels.split(",");
+      let checkarr = checklist.split(",");
+      let mcheckarr = [];
+      for (let elem of checkarr) {
+        let melem = { text: elem, completed: false };
+        mcheckarr.push(melem);
       }
-
-      // Make a POST request to your backend with the user's token in the headers
-      const response = await axios.post(
-        "http://localhost:8000/api/tasks",
+      // console.log(token)
+      let response = await axios.post(
+        `http://localhost:8000/api/tasks`,
         {
-          ...formData, // Include other form data
+          description,
+          name,
+          checklist: mcheckarr,
+          labels: labelarr,
+          dueDate,
+          creatorName,
         },
         {
-          headers: {
-            Authorization: `Bearer ${userToken}`,
-          },
+          headers: { Authorization: `Bearer ${userToken}` },
         }
       );
-
-      // Check if the response status is OK (201)
-      if (response.status === 201) {
-        // Handle the successful response here
-        console.log("Task created:", response.data);
-
-        // Close the modal after successful submission
-        onClose();
-      } else {
-        // Handle other response statuses (e.g., 400, 401, etc.) here
-        console.error("Error creating task. Status:", response.status);
-      }
-    } catch (error) {
-      console.error("Error creating task:", error);
+      console.log(response.data);
+      toast({
+        title: "Task Added",
+        description: "Your task added successfully!",
+        status: "success",
+        duration: 5000, // The toast message will be displayed for 5 seconds
+        isClosable: true,
+      });
+      // setTasks([...tasks, response.data])
+      onClose()
+    } else {
+      alert("please fill all fields");
     }
   };
 
@@ -110,79 +148,39 @@ const Addtask = () => {
                 size="lg"
                 value={formData.name}
                 type="text"
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
+                name="name"
+                onChange={handleChange}
               />
               <Textarea
                 placeholder="Description"
                 size="lg"
                 value={formData.description}
                 type="text"
-                onChange={(e) =>
-                  setFormData({ ...formData, description: e.target.value })
-                }
+                name="description"
+                onChange={handleChange}
               />
-              <VStack align="start" spacing={2}>
-                {formData.checklist.map((item, index) => (
-                  <HStack key={index}>
-                    <Checkbox
-                      colorScheme="green"
-                      isChecked={item.completed}
-                      onChange={() => {
-                        const updatedChecklist = [...formData.checklist];
-                        updatedChecklist[index].completed = !item.completed;
-                        setFormData({
-                          ...formData,
-                          checklist: updatedChecklist,
-                        });
-                      }}
-                    >
-                      {item.text}
-                    </Checkbox>
-                    <Button
-                      colorScheme="red"
-                      size="sm"
-                      onClick={() => removeChecklistItem(index)}
-                    >
-                      Remove
-                    </Button>
-                  </HStack>
-                ))}
-                <HStack>
-                  <Input
-                    placeholder="New checklist item"
-                    size="sm"
-                    value={newChecklistItem}
-                    onChange={(e) => setNewChecklistItem(e.target.value)}
-                  />
-                  <Button
-                    colorScheme="blue"
-                    size="sm"
-                    onClick={addChecklistItem}
-                  >
-                    Add
-                  </Button>
-                </HStack>
-              </VStack>
+              <Input
+                placeholder="Enter checklist, separate by commas"
+                size="lg"
+                type="text"
+                name="checklist"
+                onChange={handleChange}
+              />
               <Input
                 type="date"
                 placeholder="due date"
                 size="lg"
                 value={formData.dueDate}
-                onChange={(e) =>
-                  setFormData({ ...formData, dueDate: e.target.value })
-                }
+                name="dueDate"
+                onChange={handleChange}
               />
               <Input
-                name="authorName"
                 placeholder="Author Name"
                 size="lg"
                 value={formData.createdBy}
                 type="text"
-                onChange={(e) =>
-                  setFormData({ ...formData, labels: e.target.value })
-                }
+                name="labels"
+                onChange={handleChange}
               />
             </Stack>
           </ModalBody>

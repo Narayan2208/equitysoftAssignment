@@ -23,7 +23,8 @@ app.use("/api", taskRoutes)
 app.listen(8000, async (req, res) => {
   try {
     await mongoose.connect(
-      "mongodb+srv://arshgoyal459:Zxcvbnm1@cluster0.0lsykzj.mongodb.net/tasksmanager?retryWrites=true&w=majority",
+      "mongodb+srv://narayandutta2208:Narayan2208@cluster0.a7nkloz.mongodb.net/tasksmanager?retryWrites=true&w=majority",
+      
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,

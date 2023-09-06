@@ -2,7 +2,8 @@ import React from 'react'
 import Navbar from './Navbar'
 import Addtask from './Addtask'
 import { Box } from '@chakra-ui/react'
-import ShowTask from './ShowTask'
+import AssignedTask from './AssignedTask'
+import UnAssignedTTask from './UnAssignedTTask'
 
 const Home = () => {
   return (
@@ -13,7 +14,8 @@ const Home = () => {
     <Addtask/>
 
     </Box>
-    <ShowTask  />
+    {/* <AssignedTask  /> */}
+    <UnAssignedTTask/>
     </>
   )
 }
