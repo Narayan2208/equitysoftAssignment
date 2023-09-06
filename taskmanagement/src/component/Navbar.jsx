@@ -59,7 +59,7 @@ const Navbar = () => {
               {username}
             </Badge>
           </Text>
-          <Button  onClick={handleLogout} bg={"#BB2525"} color={"white"} fontWeight={"bold"} rightIcon={<FiLogOut/>}>Log Out</Button>
+          <Button  onClick={handleLogout} bg={"#BB2525"} color={"white"} fontWeight={"bold"} rightIcon={<FiLogOut/>} _hover={ {bg: 'blue.500', color: 'white'} }>Log Out</Button>
         </Flex>
       </Flex>
     </>
