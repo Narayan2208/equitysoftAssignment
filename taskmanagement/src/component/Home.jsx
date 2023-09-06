@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from './Navbar'
 import Addtask from './Addtask'
 import { Box } from '@chakra-ui/react'
+import ShowTask from './ShowTask'
 
 const Home = () => {
   return (
@@ -10,7 +11,9 @@ const Home = () => {
     <Box width={"10%"} margin={"30px auto"}>
 
     <Addtask/>
+
     </Box>
+    <ShowTask  />
     </>
   )
 }

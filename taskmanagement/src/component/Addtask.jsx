@@ -23,9 +23,9 @@ const Addtask = () => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    checklist: [], // Initialize checklist as an empty array
+    checklist: [],
     dueDate: "",
-    createdBy: "",
+    labels: [],
   });
 
   // State to capture a new checklist item
@@ -181,7 +181,7 @@ const Addtask = () => {
                 value={formData.createdBy}
                 type="text"
                 onChange={(e) =>
-                  setFormData({ ...formData, createdBy: e.target.value })
+                  setFormData({ ...formData, labels: e.target.value })
                 }
               />
             </Stack>
