@@ -1,137 +1,97 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 import {
-  Box,
-  Button,
   Card,
+  Checkbox,
   CardBody,
   CardFooter,
-  Checkbox,
-  HStack,
-  Heading,
+  Box,
   Stack,
+  Heading,
   Text,
-  VStack,
-} from "@chakra-ui/react";
-const UnAssignedTTask = () => {
-  let [unassignedTasks, setUnassignedTask] = useState([]);
-  useEffect(() => {
-    getAllTasks();
-  }, []);
-
-  let getAllTasks = async () => {
-    try {
-      const userToken = localStorage.getItem("token");
-
-      if (!userToken) {
-        console.error("User not authenticated");
-
-        return;
-      }
-
-      const headers = {
-        Authorization: `Bearer ${userToken}`,
-      };
-
-      let tasks = await axios.get(
-        "http://localhost:8000/api/tasks/unassigned",
-        {
-          headers: headers,
-        }
-      );
-      setUnassignedTask(tasks.data);
-      console.log(tasks.data, "task");
-    } catch (error) {
-      console.error("Error fetching tasks:", error);
-    }
-  };
+  Button,
+  HStack,
+  VStack
+} from "@chakra-ui/react"
+import AddMember from "./AddMember"
+import AddComment from "./AddComment"
+import "./TaskLayout.css"
+export default function UnAssignedTTask({ task, setUpdate, isLoading }) {
+  console.log(isLoading)
   return (
-    <>
-      {unassignedTasks.map((e, id) => {
-        return (
-          <Card
-            // direction={{ base: "column", sm: "row" }}
-            overflow="hidden"
-            variant="outline"
-            w={"100%"}
-            mt={5}
-          >
-            <Stack>
-              <CardBody p={10} mb={"-30px"}>
-                <Heading size="md">{e.name}</Heading>
-                <HStack spacing={5} mb={10}>
-                  <Text>
-                    <span>Created by:-</span>{" "}
-                    {e.createdBy.name === undefined
-                      ? "Annonymous"
-                      : `${e.createdBy.name}`}
-                  </Text>
-                  <Text>
-                    <span>Due date:-</span>{" "}
-                    {new Date(e.dueDate).toLocaleDateString()}
-                  </Text>
-                </HStack>
-                <HStack spacing={36} justify={"space-between"}>
-                  <Box>
-                    <Text h="fit-content" mb={3}>
-                      <Heading as="h3" size="sm" display={"inline"}>
-                        Description :
-                      </Heading>{" "}
-                      {e.description}
-                    </Text>
-                    <Text h="fit-content" mb={3}>
-                      <Heading as="h3" size="sm" display={"inline"}>
-                        Labels :
-                      </Heading>{" "}
-                      {e.labels.map((label) => {
-                        return (
-                          <Button size="sm" mr={2} variant="outline">
-                            {label}
-                          </Button>
-                        );
-                      })}
-                    </Text>
-                    <Text>
-                      <Heading as="h3" size="sm" display={"inline"}>
-                        Assigned Users :
-                      </Heading>{" "}
-                      {e.assignedUsers.map((elem) => {
-                        return (
-                          <Button size="sm" mr={2} variant="outline">
-                            {elem.name}{" "}
-                          </Button>
-                        );
-                      })}
-                    </Text>
-                  </Box>
+    <Card
+      borderRadius={"0px 20px 0px 20px"}
+      overflow="hidden"
+      variant="outline"
+      w={"80%"}
+      mt={5}
+      bg={"#AED2FF"}
+      boxShadow= {"rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px"}
+    >
+      <Stack>
+        <CardBody p={10} mb={"-30px"}>
+          <Heading size="md" fontFamily={`'Poppins', sans-serif`}>Task Name : {task.name}</Heading>
+          <HStack spacing={5} mb={10}>
+            <Text>
+              <span>Created by:-</span> {task.createdBy.name}
+            </Text>
+            <Text>
+              <span>Due date:-</span>{" "}
+              {new Date(task.dueDate).toLocaleDateString()}
+            </Text>
+          </HStack>
+          <HStack spacing={36} justify={"space-between"}>
+            <Box>
+              <Text h="fit-content" mb={3}>
+                <Heading as="h3" size="sm" display={"inline"}>
+                  Description :
+                </Heading>{" "}
+                {task.description}
+              </Text>
+              <Text h="fit-content" mb={3}>
+                <Heading as="h3" size="sm" display={"inline"}>
+                  Labels :
+                </Heading>{" "}
+                {task.labels.map((label) => {
+                  return (
+                    <Button size="sm" mr={2} variant="outline">
+                      {label}
+                    </Button>
+                  )
+                })}
+              </Text>
+              <Text>
+                <Heading as="h3" size="sm" display={"inline"}>
+                  Assigned Users :
+                </Heading>{" "}
+                {task.assignedUsers.map((elem) => {
+                  return (
+                    <Button size="sm" mr={2} variant="outline">
+                      {elem.name}{" "}
+                    </Button>
+                  )
+                })}
+              </Text>
+            </Box>
 
-                  <VStack mr={20}>
-                    {e.checklist.map((elem) => {
-                      return (
-                        <Checkbox
-                          colorScheme="red"
-                          defaultChecked={elem.completed}
-                        >
-                          {elem.text}
-                        </Checkbox>
-                      );
-                    })}
-                  </VStack>
-                </HStack>
-              </CardBody>
+            <VStack mr={20}>
+              {task.checklist.map((elem) => {
+                return (
+                  <Checkbox colorScheme="red" defaultChecked={elem.completed}>
+                    {elem.text}
+                  </Checkbox>
+                )
+              })}
+            </VStack>
+          </HStack>
+        </CardBody>
 
-              <CardFooter p={10}>
-                <HStack spacing={10}>
-                  {/* <AddMember task={task} setUpdate={setUpdate} />
-            <AddComment task={task} setUpdate={setUpdate} /> */}
-                </HStack>
-              </CardFooter>
-            </Stack>
-          </Card>
-        );
-      })}
-    </>
-  );
-};
-
-export default UnAssignedTTask;
+        <CardFooter p={10}>
+          <HStack spacing={10}>
+            <AddMember task={task} setUpdate={setUpdate} />
+            <AddComment task={task} setUpdate={setUpdate} />
+          </HStack>
+        </CardFooter>
+      </Stack>
+    </Card>
+    
+  )
+}

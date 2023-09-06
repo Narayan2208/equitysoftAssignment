@@ -2,6 +2,8 @@ import { Badge, Box, Button, Flex, Text } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Appcontext } from "../ContextProvider/AppcontextProvider";
+import { FiLogOut } from 'react-icons/fi';
+import "./TaskLayout.css"
 const Navbar = () => {
   const [username, setUsername] = useState(""); // State to store the username
   const navigate = useNavigate();
@@ -41,6 +43,7 @@ const Navbar = () => {
           fontWeight={"500"}
           fontSize={"30px"}
           margin={"auto"}
+          fontFamily={`'Poppins', sans-serif`}
         >
           Task Management
         </Text>
@@ -51,12 +54,12 @@ const Navbar = () => {
             fontWeight={"bolder"}
             fontFamily={`'Schibsted Grotesk', sans-serif`}
           >
-            {" Welcome 😊"}
-            <Badge ml="1" fontSize="0.8em" colorScheme="green">
+            {"Welcome 😊"}
+            <Badge ml="1" fontSize="0.8em" colorScheme="green" fontFamily={`'Poppins', sans-serif`}>
               {username}
             </Badge>
           </Text>
-          <Button onClick={handleLogout}>Log Out</Button>
+          <Button  onClick={handleLogout} bg={"#BB2525"} color={"white"} fontWeight={"bold"} rightIcon={<FiLogOut/>}>Log Out</Button>
         </Flex>
       </Flex>
     </>

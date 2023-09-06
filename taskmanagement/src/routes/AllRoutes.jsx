@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import PrivateRoutes from './PrivateRoutes'
 import Home from '../component/Home'
-import AuthenticationLayoutPage from '../component/AuthenticationLayoutPage'
+import AuthenticationLayoutPage from '../AuthenticationPages/AuthenticationLayoutPage'
 const AllRoutes = () => {
     let routes = [
         { path: '/home',

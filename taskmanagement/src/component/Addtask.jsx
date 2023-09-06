@@ -13,11 +13,10 @@ import {
   Stack,
   Textarea,
   useToast,
- 
 } from "@chakra-ui/react";
 import axios from "axios";
-
-const Addtask = () => {
+import { FaPlus } from 'react-icons/fa';
+const Addtask = ({ setTasks, tasks }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [formData, setFormData] = useState({
     name: "",
@@ -37,13 +36,11 @@ const Addtask = () => {
   useEffect(() => {
     setUserToken(localStorage.getItem("token"));
     setUserName(localStorage.getItem("userName"));
-   
-    
   }, []);
 
   useEffect(() => {
-    setFormData({ ...formData, creatorName: userName })
-  }, [userName])
+    setFormData({ ...formData, creatorName: userName });
+  }, [userName]);
   // const handleSubmit = async () => {
   //   try {
   //     // Retrieve the user's token from localStorage
@@ -85,7 +82,8 @@ const Addtask = () => {
   //   }
   // };
   const handleSubmit = async () => {
-    let { description, name, checklist, labels, dueDate, creatorName } = formData;
+    let { description, name, checklist, labels, dueDate, creatorName } =
+      formData;
     console.log(formData);
     if (
       name !== "" &&
@@ -125,8 +123,9 @@ const Addtask = () => {
         duration: 5000, // The toast message will be displayed for 5 seconds
         isClosable: true,
       });
-      // setTasks([...tasks, response.data])
-      onClose()
+      setTasks([...tasks, response.data]);
+      console.log(tasks);
+      onClose();
     } else {
       alert("please fill all fields");
     }
@@ -134,7 +133,7 @@ const Addtask = () => {
 
   return (
     <>
-      <Button onClick={onOpen}>Add a task</Button>
+      <Button onClick={onOpen} rightIcon={< FaPlus/>} bg={"#FF3FA4"} color={"#F8FF95"} _hover={ {bg: 'blue.500', color: 'white'} }>Add a task</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

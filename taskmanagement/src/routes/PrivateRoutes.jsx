@@ -2,7 +2,7 @@ import React , {useContext} from 'react'
 import { useNavigate } from 'react-router-dom';
 import Home from '../component/Home';
 import { Appcontext } from '../ContextProvider/AppcontextProvider';
-import AuthenticationLayoutPage from '../component/AuthenticationLayoutPage';
+import AuthenticationLayoutPage from '../AuthenticationPages/AuthenticationLayoutPage';
 const PrivateRoutes = ({children}) => {
     let { isauth } = useContext(Appcontext);
     // let isLogin = true;
