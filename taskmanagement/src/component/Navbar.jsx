@@ -34,6 +34,7 @@ const Navbar = () => {
         position={"sticky"}
         top={"0"}
         h={"10vh"}
+        zIndex={1000}
       >
         <Text
           color={"#F6F4EB"}
