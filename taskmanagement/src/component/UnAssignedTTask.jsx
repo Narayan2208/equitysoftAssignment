@@ -28,19 +28,19 @@ export default function UnAssignedTTask({ task, setUpdate, isLoading }) {
     >
       <Stack>
         <CardBody p={10} mb={"-30px"}>
-          <Heading size="md" fontFamily={`'Poppins', sans-serif`}>Task Name : {task.name}</Heading>
+          <Heading size="md" lineHeight={10} fontFamily={`'Poppins', sans-serif`} >Task Name : {task.name}</Heading>
           <HStack spacing={5} mb={10}>
-            <Text>
-              <span>Created by:-</span> {task.createdBy.name}
+            <Text fontFamily={`'Poppins', sans-serif`}>
+              <span fontFamily={`'Poppins', sans-serif`}>Created by:-</span> {task.createdBy.name}
             </Text>
-            <Text>
-              <span>Due date:-</span>{" "}
+            <Text fontFamily={`'Poppins', sans-serif`}>
+              <span fontFamily={`'Poppins', sans-serif`}>Due date:-</span>{" "}
               {new Date(task.dueDate).toLocaleDateString()}
             </Text>
           </HStack>
           <HStack spacing={36} justify={"space-between"}>
-            <Box>
-              <Text h="fit-content" mb={3}>
+            <Box fontFamily={`'Poppins', sans-serif`}>
+              <Text fontFamily={`'Poppins', sans-serif`} h="fit-content" mb={3}>
                 <Heading as="h3" size="sm" display={"inline"}>
                   Description :
                 </Heading>{" "}
@@ -72,7 +72,7 @@ export default function UnAssignedTTask({ task, setUpdate, isLoading }) {
               </Text>
             </Box>
 
-            <VStack mr={20}>
+            <VStack  mr={20}>
               {task.checklist.map((elem) => {
                 return (
                   <Checkbox colorScheme="red" defaultChecked={elem.completed}>
