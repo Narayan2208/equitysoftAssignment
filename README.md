@@ -62,6 +62,30 @@ Manage your tasks efficiently with our Task Management Application. This applica
 
 Include some screenshots of your application here to give users a visual overview of your Task Management Application.
 
+- `Sign Up`: User can sign up.
+- - <div >
+        <img src="/taskmanagement/src/Asset/Screenshot 2023-09-06 233918.png" width="800px" height="500px"/> 
+    </div>
+- `Log in`: User can log in.
+- - <div >
+        <img src="/taskmanagement/src/Asset/Screenshot 2023-09-06 233909.png" width="800px" height="500px"/> 
+    </div>
+- `Home page`: Home Page Layout.
+- - <div >
+        <img src="/taskmanagement/src/Asset/Screenshot 2023-09-06 234401.png" width="800px" height="500px"/> 
+    </div>
+- `Add Task`: Create a task.
+- - <div >
+        <img src="/taskmanagement/src/Asset/Screenshot 2023-09-06 234416.png" width="800px" height="500px"/> 
+    </div>
+- `Add Members`: Add members.
+- - <div >
+        <img src="/taskmanagement/src/Asset/Screenshot 2023-09-06 234435.png" width="800px" height="500px"/> 
+    </div>
+- `Add Commnets`: Add commnets.
+- - <div >
+        <img src="/taskmanagement/src/Asset/Screenshot 2023-09-06 234451.png" width="800px" height="500px"/> 
+    </div>
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
