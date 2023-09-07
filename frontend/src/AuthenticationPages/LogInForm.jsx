@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext } from "react"
 import {
   Stack,
   InputGroup,
@@ -8,33 +8,33 @@ import {
   Text,
   Button,
   useToast,
-} from "@chakra-ui/react";
-import { SiGmail } from "react-icons/si";
-import { MdPassword } from "react-icons/md";
-import "./SignUpForm.css";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { Appcontext } from "../ContextProvider/AppcontextProvider";
+} from "@chakra-ui/react"
+import { SiGmail } from "react-icons/si"
+import { MdPassword } from "react-icons/md"
+import "./SignUpForm.css"
+import { Link } from "react-router-dom"
+import axios from "axios"
+import { Appcontext } from "../ContextProvider/AppcontextProvider"
 const LogInForm = () => {
-  let toast = useToast();
+  let toast = useToast()
 
   let [loginobj, setloginobj] = useState({
     email: "",
     password: "",
-  });
-  let { isauth, setisauth } = useContext(Appcontext);
+  })
+  let { isauth, setisauth } = useContext(Appcontext)
   let handleLogin = (e) => {
-    setloginobj({ ...loginobj, [e.target.name]: e.target.value });
-  };
+    setloginobj({ ...loginobj, [e.target.name]: e.target.value })
+  }
 
   let doLogin = async (e) => {
     try {
       // Make a POST request to your backend
-      let res = await axios.post("http://localhost:8000/api/login", loginobj);
-      console.log(res);
+      let res = await axios.post("http://localhost:8000/v1/loginuser", loginobj)
+      console.log("login", res.data)
 
       // Clear the form fields
-      setloginobj({ email: "", password: "" });
+      setloginobj({ email: "", password: "" })
 
       // Show a toast message for successful signup
       toast({
@@ -43,14 +43,14 @@ const LogInForm = () => {
         status: "success",
         duration: 5000, // The toast message will be displayed for 5 seconds
         isClosable: true,
-      });
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("userName", res.data.name);
-      setisauth(true);
+      })
+      localStorage.setItem("token", res.data.token)
+      localStorage.setItem("userName", res.data.name)
+      setisauth(true)
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error:", error)
     }
-  };
+  }
   return (
     <>
       <Box
@@ -101,7 +101,7 @@ const LogInForm = () => {
             <Link to={"/home"}>
               <Button
                 onClick={() => {
-                  doLogin();
+                  doLogin()
                 }}
                 bg={"#1273EB"}
                 w={"100%"}
@@ -114,7 +114,7 @@ const LogInForm = () => {
         </Stack>
       </Box>
     </>
-  );
-};
+  )
+}
 
-export default LogInForm;
+export default LogInForm

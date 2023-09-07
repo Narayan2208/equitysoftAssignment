@@ -64,27 +64,23 @@ Include some screenshots of your application here to give users a visual overvie
 
 - `Sign Up`: User can sign up.
 - - <div >
-        <img src="/taskmanagement/src/Asset/Screenshot 2023-09-06 233918.png" width="800px" height="500px"/> 
+        <img src="/frontend/src/Asset/Screenshot 2023-09-06 233918.png" width="800px" height="500px"/> 
     </div>
 - `Log in`: User can log in.
 - - <div >
-        <img src="/taskmanagement/src/Asset/Screenshot 2023-09-06 233909.png" width="800px" height="500px"/> 
+        <img src="/frontend/src/Asset/Screenshot 2023-09-06 233909.png" width="800px" height="500px"/> 
     </div>
 - `Home page`: Home Page Layout.
 - - <div >
-        <img src="/taskmanagement/src/Asset/Screenshot 2023-09-06 234401.png" width="800px" height="500px"/> 
+        <img src="/frontend/src/Asset/Screenshot%202023-09-07%20182110.png" width="800px" height="500px"/> 
     </div>
 - `Add Task`: Create a task.
 - - <div >
-        <img src="/taskmanagement/src/Asset/Screenshot 2023-09-06 234416.png" width="800px" height="500px"/> 
-    </div>
-- `Add Members`: Add members.
-- - <div >
-        <img src="/taskmanagement/src/Asset/Screenshot 2023-09-06 234435.png" width="800px" height="500px"/> 
+        <img src="/frontend/src/Asset/Screenshot 2023-09-07 182132.png" width="800px" height="500px"/> 
     </div>
 - `Add Commnets`: Add commnets.
 - - <div >
-        <img src="/taskmanagement/src/Asset/Screenshot 2023-09-06 234451.png" width="800px" height="500px"/> 
+        <img src="/frontend/src/Asset/Screenshot 2023-09-07 182145.png" width="800px" height="500px"/> 
     </div>
 ## License
 

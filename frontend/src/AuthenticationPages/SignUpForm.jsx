@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 import {
   Button,
   Stack,
@@ -8,36 +8,36 @@ import {
   Box,
   Text,
   useToast,
-} from "@chakra-ui/react";
-import { SiGmail } from "react-icons/si";
-import { MdPassword } from "react-icons/md";
-import { BsFillPersonFill } from "react-icons/bs";
-import "./SignUpForm.css";
-import axios from "axios";
+} from "@chakra-ui/react"
+import { SiGmail } from "react-icons/si"
+import { MdPassword } from "react-icons/md"
+import { BsFillPersonFill } from "react-icons/bs"
+import "./SignUpForm.css"
+import axios from "axios"
 const SignUpForm = () => {
   let signinUsers = {
     name: "",
     email: "",
     password: "",
-  };
-  let toast = useToast();
+  }
+  let toast = useToast()
 
-  let [signinUser, setSignInUser] = useState(signinUsers);
- 
+  let [signinUser, setSignInUser] = useState(signinUsers)
+
   let handleSubmit = async (e) => {
-    
     try {
+      console.log("hey", signinUser)
       // Make a POST request to your backend
-      const response = await axios.post("http://localhost:8000/api/register", 
-        signinUser,
-        
-      );
+      const response = await axios.post(
+        "http://localhost:8000/v1/registeruser",
+        signinUser
+      )
 
       // Handle the response
-      console.log(response.data);
+      console.log("hey", response.data)
 
       // Clear the form fields
-      setSignInUser({ name: "", email: "", password: "" });
+      setSignInUser({ name: "", email: "", password: "" })
 
       // Show a toast message for successful signup
       toast({
@@ -46,11 +46,11 @@ const SignUpForm = () => {
         status: "success",
         duration: 5000, // The toast message will be displayed for 5 seconds
         isClosable: true,
-      });
+      })
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error:", error)
     }
-  };
+  }
   return (
     <>
       <Box
@@ -61,7 +61,6 @@ const SignUpForm = () => {
         left={"8rem"}
         bg={"white"}
         box-shadow={"rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px"}
-       
       >
         <Text
           textAlign={"center"}
@@ -72,8 +71,7 @@ const SignUpForm = () => {
         >
           Sign Up
         </Text>
-        <Stack w={"100%"} spacing={4} >
-      
+        <Stack w={"100%"} spacing={4}>
           <InputGroup>
             <InputLeftElement pointerEvents="none">
               <BsFillPersonFill color="gray.300" />
@@ -119,7 +117,7 @@ const SignUpForm = () => {
               w={"100%"}
               color={"white"}
               onClick={() => {
-                handleSubmit();
+                handleSubmit()
               }}
             >
               Submit
@@ -128,7 +126,7 @@ const SignUpForm = () => {
         </Stack>
       </Box>
     </>
-  );
-};
+  )
+}
 
-export default SignUpForm;
+export default SignUpForm

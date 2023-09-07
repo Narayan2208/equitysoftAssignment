@@ -20,7 +20,7 @@ import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react"
 
 import { useState } from "react"
 import { useEffect } from "react"
-import {AiOutlineComment } from 'react-icons/ai';
+import { AiOutlineComment } from "react-icons/ai"
 import axios from "axios"
 const AddComment = ({ task, setUpdate }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -30,16 +30,14 @@ const AddComment = ({ task, setUpdate }) => {
     if (input !== "") {
       axios
         .post(
-          `http://localhost:8000/api/tasks/${task._id}/comments`,
+          `http://localhost:8000/v1/tasks/comment/${task._id}`,
           {
             text: input,
             name: localStorage.getItem("userName"),
           },
           {
             headers: {
-              Authorization: `Bearer ${
-                localStorage.getItem("token")
-              }`,
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }
         )
@@ -57,7 +55,9 @@ const AddComment = ({ task, setUpdate }) => {
 
   return (
     <>
-      <Button onClick={onOpen} rightIcon={<AiOutlineComment/>} >View Comments</Button>
+      <Button onClick={onOpen} bg={"#009FBD"} color={"white"} _hover={{bg : "#FF8400"}} rightIcon={<AiOutlineComment />}>
+        View Comments
+      </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
