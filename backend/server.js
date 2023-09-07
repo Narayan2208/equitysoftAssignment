@@ -4,8 +4,8 @@ const dotenv = require("dotenv")
 const cors = require("cors")
 
 // routes
-const userRoutes = require("./routes/user.routes.js")
-const taskRoutes = require("./routes/task.routes.js")
+const userRoutes = require("./src/routes/user.routes.js")
+const taskRoutes = require("./src/routes/task.routes.js")
 
 // initializing the app
 const app = express()
