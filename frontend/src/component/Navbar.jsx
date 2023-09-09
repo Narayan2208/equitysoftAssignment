@@ -32,7 +32,7 @@ const Navbar = () => {
       <Flex
         justifyContent={"flex-end"}
         alignItems={"center"}
-        bg={"#0C356A"}
+        bg={"#FF3FA4"}
         position={"sticky"}
         top={"0"}
         h={"10vh"}
@@ -45,7 +45,7 @@ const Navbar = () => {
           margin={"auto"}
           fontFamily={`'Poppins', sans-serif`}
         >
-          Task Management
+          TaskMaster
         </Text>
         <Flex w={"30%"} justifyContent={"space-around"}>
           <Text
