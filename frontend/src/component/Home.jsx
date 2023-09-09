@@ -6,9 +6,7 @@ import axios from "axios"
 import AllTask from "./TaskLayout"
 const Home = () => {
   const [tasks, setTasks] = useState([])
- 
   const [update, setUpdate] = useState(false)
-  const [isLoading, setLoding] = useState(true)
   useEffect(() => {
     const token = localStorage.getItem("token")
     console.log("token in home", token)
@@ -23,7 +21,7 @@ const Home = () => {
       .catch((err) => alert(err.message))
   }, [update])
 
- 
+
   return (
     <>
       <Box bg={"#E4F1FF"}>

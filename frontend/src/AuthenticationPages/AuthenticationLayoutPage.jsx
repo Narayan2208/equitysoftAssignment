@@ -12,14 +12,11 @@ import {
   Tabs,
 } from "@chakra-ui/react";
 import React from "react";
-import authImage1 from "../Asset/Illustrations by Kristian Hammerstad _ Inspiration Grid.jpeg";
-import authImage2 from "../Asset/Copywriting Illustration.jpeg";
-import authImage4 from "../Asset/What to write about on Instagram.jpeg";
 import authImage3 from "../Asset/Kraken Crypto Exchange _ Buy crypto with peace of mind.jpeg";
 import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
 import { Link } from "react-router-dom";
-import { BsFillPersonFill } from "react-icons/bs";
+
 const AuthenticationLayoutPage = () => {
   return (
     <>

@@ -72,15 +72,15 @@ Include some screenshots of your application here to give users a visual overvie
     </div>
 - `Home page`: Home Page Layout.
 - - <div >
-        <img src="/frontend/src/Asset/Screenshot%202023-09-07%20182110.png" width="800px" height="500px"/> 
+        <img src="/frontend/src/Asset/AllMyTasks.png" width="800px" height="500px"/> 
     </div>
 - `Add Task`: Create a task.
 - - <div >
-        <img src="/frontend/src/Asset/Screenshot 2023-09-07 182132.png" width="800px" height="500px"/> 
+        <img src="/frontend/src/Asset/CreateATask.png" width="800px" height="500px"/> 
     </div>
 - `Add Commnets`: Add commnets.
 - - <div >
-        <img src="/frontend/src/Asset/Screenshot 2023-09-07 182145.png" width="800px" height="500px"/> 
+        <img src="/frontend/src/Asset/AddComments.png" width="800px" height="500px"/> 
     </div>
 ## License
 
